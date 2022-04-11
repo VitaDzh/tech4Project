@@ -82,12 +82,15 @@ public class Project08 {
          if(!str.contains(" ") && str.length() > 7 && str.length() < 17){
              for (int i = 0; i < str.length(); i++) {
                  if(Character.isLowerCase(str.charAt(i))) countLow++;
-                 if(Character.isUpperCase(str.charAt(i))) countUp++;
-                 if(Character.isDigit(str.charAt(i))) countDig++;
+                 else if(Character.isUpperCase(str.charAt(i))) countUp++;
+                 else if(Character.isDigit(str.charAt(i))) countDig++;
                  if(!Character.isLetterOrDigit(str.charAt(i)) && !Character.isWhitespace(str.charAt(i))) countSpec++;
              }
         } return(countLow >=1 && countUp >= 1 && countDig >= 1 && countSpec >= 1);
     }
+    /*
+    if(str.contains(" ") || str.length() < 8 || str.length > 16
+     */
 
     /*
     TASK-4 - validateEmailAddress() method
@@ -116,6 +119,16 @@ public class Project08 {
     // 0 1 2 3 4 5 6 7 8
 
 
+    //Solution without regex TASK 4_Akin's
+    //str.length()-1 != str.removeAll("@").length()
+    public static boolean validateEmail(String str){
+        if(str.contains(" ") || !str.contains("@") || !str.contains(".") || str.length() < 8 ||
+                (str.indexOf("@") != str.lastIndexOf("@"))) return false;
+
+        return str.substring(0, str.indexOf("@")).length() >= 2 &&
+                str.substring(str.indexOf("@")+1, str.indexOf(".")).length() >= 2 &&
+                str.substring(str.lastIndexOf(".")+1).length() >= 2;
+    }
 
 
 
