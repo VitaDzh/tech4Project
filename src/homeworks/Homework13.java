@@ -1,6 +1,8 @@
 package homeworks;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class Homework13 {
@@ -53,19 +55,24 @@ public class Homework13 {
         System.out.println();
 
          */
+        int[] numbers = {0, -4, -7, 0, 5, 10, 45};
+
         int pos = -1;
         int neg = 1;
-        int[] numbers = {0, -4, -7, 0, 5, 10, 45};
-        for(int number : numbers){
-            if(pos != -1 && neg != 1) break; // optional for performance
-            if(pos == -1 && number > 0) {
+
+        for (int number : numbers) {
+
+            if (pos != -1 && neg != 1) break; // optional for performance
+
+            if (pos == -1 && number > 0){
                 pos = number;
-            } else if (neg == 1 && number < 0){
+            }else if (neg == 1 && number < 0){
                 neg = number;
             }
         }
+
         System.out.println((pos != -1) ? "First positive number is: " + pos : "Positive number was not found!");
-        System.out.println((pos != 1) ? "First negative number is: " + pos : "Negative number was not found!");
+        System.out.println((neg != 1) ? "First negative number is: " + neg : "Negative number was not found!");
 
 
         System.out.println("-----------------TASK 3-----------------");
@@ -79,12 +86,24 @@ public class Homework13 {
 
         int[] randomNums = new int[5];
         boolean isContains2Or3 = false;
-        for (int i = 1; i < randomNums.length; i++) {
+        for (int i = 0; i < randomNums.length; i++) {
                 randomNums[i] = new Random().nextInt( 11 );
             System.out.println("Random number " + i + " is: " + randomNums[i]);
                 if(randomNums[i] == 2 || randomNums[i] == 3) isContains2Or3 = true;
         }
         System.out.println(isContains2Or3);
+
+        /*
+        System.out.println("..........TASK3...........Melda's.");
+        int[] task3 = new int[5];
+        int random1 = (int) (Math.random() * 10) + 1;
+        for (int i = 0; i < task3.length; i++) {
+            task3[i] = random1 = (int) (Math.random() * 10) + 1;
+            Arrays.sort(task3);
+        }
+        System.out.println(Arrays.toString(task3));
+        System.out.println(Arrays.binarySearch(task3, 3) >= 0 || Arrays.binarySearch(task3, 2) >= 0);
+         */
 
 
 
@@ -108,6 +127,8 @@ public class Homework13 {
         System.out.println();
 
 
+
+
         System.out.println("---------------------TASK 5---------------------");
         /*
         Requirement:
@@ -125,21 +146,24 @@ public class Homework13 {
         Expected output 2:
         There is no matching elements
          */
+      //SALIH's recap
         int[] numbers1 = {10, 20, 30, 50, 70};
         int[] numbers2 = {20, 50, 70, 100, 300};
-        String str = "";
 
-        boolean match = false;
-        for (int num : numbers1) {
-            for (int numb : numbers2) {
-                if (num == numb) {
-                    match = true;
-                    str += num + "\n";
+        boolean isDuplicateFound = false;
+
+        for (int i = 0; i < numbers1.length; i++) {
+            for (int j = 0; j < numbers2.length; j++) {
+                if (numbers1[i] == numbers2[j]){
+                    System.out.println(numbers1[i]);
+                    isDuplicateFound = true;
+                    break;
                 }
             }
         }
-        if(!match) System.out.println("There is no matching elements\n");
-        System.out.println(str + "\n");
+
+        if(!isDuplicateFound) System.out.println("There is no matching elements");
+
 
 
         System.out.println("---------------TASK 6---------------");

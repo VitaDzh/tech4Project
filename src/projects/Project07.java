@@ -65,8 +65,6 @@ public class Project07 {
             int greatest = num[num.length - 1];
             int seconMin = num[0] + 1;
             int seconMax = num[num.length-2];
-            if(seconMin == smallest) seconMin = num[0] + 1;  //STUPID WAY...WE do not know how many duplicates there is gonna be
-            if(seconMax == greatest) seconMax = num[num.length-3];
 
             System.out.println("Second Smallest = " + seconMin);
             System.out.println("Second Greatest = " + seconMax);

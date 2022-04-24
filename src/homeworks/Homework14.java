@@ -137,6 +137,25 @@ public class Homework14 {
         }
         if (d.isEmpty()) System.out.println("There is no duplicates");
 
+        /*
+             System.out.println("\nTASK4\n");
+
+        String[] ws = {"A", "foo", "12" , "Foo", "bar", "a", "a","java"};
+
+        String duplicates = "";
+
+        for (int i = 0; i < ws.length - 1; i++) {
+            for (int j = i + 1; j < ws.length; j++) {
+                if (ws[i].equalsIgnoreCase(ws[j]) && !duplicates.contains(ws[i].toLowerCase())){
+                    System.out.println(ws[i]);
+                    duplicates += ws[i].toLowerCase();
+                }
+            }
+        }
+
+        if (duplicates.isEmpty()) System.out.println("There is no duplicates");
+         */
+
 
 
         System.out.println("Trying boolean flag");
@@ -165,12 +184,6 @@ public class Homework14 {
         Collections.reverse(converted);
         System.out.println(converted);
 
-
-        List<String> wordd = new ArrayList<>();
-        for (int i = words5.length-1; i >=0 ; i--) {
-             wordd.add(words5[i]);
-        }
-        System.out.println(wordd);
 
         /*
                System.out.print("[");
@@ -206,7 +219,7 @@ public class Homework14 {
         for (String word : words1) {
             String reverseWord = "";
             for (int i = word.length()-1; i >= 0; i--) {
-                reverseWord +=word.charAt(i);
+                reverseWord += word.charAt(i);
             }
             reversedString += reverseWord + " ";
         }
@@ -215,7 +228,7 @@ public class Homework14 {
         
 
         System.out.println("\n- - - - - Task6 - - KEREM- - -\n");
-        String string = "Java is fun";
+        String string = "Java is fun ok";
         String[] opposite = string.split(" ");
         for (int i = 0; i < opposite.length; i++){
             for (int j = opposite[i].length() - 1; j >= 0; j--) {

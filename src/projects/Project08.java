@@ -16,16 +16,25 @@ public class Project08 {
     [“foo”, “”, “ “, “foo bar”, “java is fun”, “ ruby ”]
     Expected output:
     2
+    ---------------------------------------------------------------------------------------------------------
+    SALIH's recap
+      public static int countMultipleWords(String[] s) {
+        int counter = 0;
+        for (String s1 : s) if (s1.trim().contains(" ")) counter++;
+        return counter;
+    }
+    ----------------------------------------------------------------------------------------------------------
      */
     public static int countMultipleWords(String[] arr) {
         int count = 0;
-        String[] trimmed = new String[6];
+        String[] trimmed = new String[arr.length];
         for (int i = 0; i < arr.length; i++) {
             trimmed[i] += arr[i].trim();
             if (trimmed[i].contains(" ")) count++;
         }
         return count;
     }
+
 
 
     /*
@@ -47,25 +56,21 @@ public class Project08 {
           return arrayList;
       }
 
-        public static ArrayList<Integer> removeNegativess(ArrayList<Integer> arrayList) {
-        Iterator<Integer> iterator = arrayList.iterator();
-        while (iterator.hasNext()) {
-            Integer element = iterator.next();
-            if (element < 0) {
-                iterator.remove();
-            }
-        }
-        return arrayList;
+      public static ArrayList<Integer> removeNegativess(ArrayList<Integer> numbers) {
+        Iterator<Integer> it = numbers.iterator();
+        // I am not assigning next() into a variable cuz I am calling it ONCE
+        while (it.hasNext()) if (it.next() < 0) it.remove();
+        return numbers;
     }
 
-    public static ArrayList<Integer> removeNegatives(ArrayList<Integer> arrayList) {
-        List<Integer> removed = new ArrayList<>();
-        for (Integer integer : arrayList) {
-            if(integer < 0) removed.add(integer);
-        }
-        arrayList.removeAll(removed);
-        return arrayList;
-    }
+        public static ArrayList<Integer> removeNegatives(ArrayList<Integer> arrayList) {
+                List<Integer> removed = new ArrayList<>();
+                for (Integer integer : arrayList) {
+                    if(integer < 0) removed.add(integer);
+                }
+                arrayList.removeAll(removed);
+                return arrayList;
+            }
 
     /*
     TASK-3 - validatePassword() method
@@ -76,6 +81,26 @@ public class Project08 {
         -should have length of 8 to 16 (length of 7 or 17 should return false)
         -should have at least 1 digit, 1 uppercase, 1 lowercase and 1 special char
         -should NOT have any space
+     -----------------------------------------------------------------------------------------------------
+     SALIH's Recap
+     public static boolean validatePassword(String password) {
+        //length --> length()
+        //1 digit, 1 uppercase, 1 lowercase and 1 special char --> inside a loop Character class methods for checking
+        //should NOT have any space --> contains();
+
+        int dg = 0, up = 0, lo = 0, spe = 0;
+        for (int i = 0; i < password.length(); i++) {
+            if (Character.isDigit(password.charAt(i))) dg++;
+            else if (Character.isUpperCase(password.charAt(i))) up++;
+            else if (Character.isLowerCase(password.charAt(i))) lo++;
+            else spe++;
+        }
+
+        return (password.length() >= 8 && password.length() <= 16) // --> length validation
+                && (dg > 0 && up > 0 && lo > 0 && spe > 0) //--> 1 digit, 1 uppercase, 1 lowercase and 1 special char validation
+                && !(password.contains(" ")); // --> space check validation
+    }
+    --------------------------------------------------------------------------------------------------------
      */
     public static boolean validatePassword(String str){
         int countLow = 0, countUp = 0, countDig = 0, countSpec = 0;
@@ -88,9 +113,13 @@ public class Project08 {
              }
         } return(countLow >=1 && countUp >= 1 && countDig >= 1 && countSpec >= 1);
     }
-    /*
-    if(str.contains(" ") || str.length() < 8 || str.length > 16
+    /* Kaly's way_REGEX
+    public static boolean validatePassword(String password) {
+    // PATTERN FORMAT: at least 1 digit, 1 uppercase, 1 lowercase, 1 special char, NO spaces
+    return password.matches("(?=.*[@!#$%]+)(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*\\d+).{8,22}");
+    }
      */
+
 
     /*
     TASK-4 - validateEmailAddress() method
@@ -102,6 +131,20 @@ public class Project08 {
 	-should NOT have any space
 	-should not have more than one “@” character
 	-should be in the given format <2+chars>@<2+chars>.<2+chars>
+  -----------------------------------------------------------------------------------------------------
+   SALIH's Recap
+      public static boolean validateEmailAddress(String email) {
+        // +validation of . --> after the @ sign there shouldn't be more than 1 .
+        // +validation of @ --> only 1 @ AND and email contains
+        // +validation of first part --> (0, index of @ ) >= 2
+        // validation of second part --> (index of @ + 1, last index of . ) >= 2
+        // validation of first part --> (last index of . + 1) >= 2
+        int cD = 0, iAt = email.indexOf("@"), lAt = email.lastIndexOf("@"), lDot = email.lastIndexOf(".");
+        for (int i = lAt + 1; i < email.length(); i++) if (email.charAt(i) == '.') cD++;
+        return cD == 1 && (iAt == lAt && email.contains("@")) && lAt >= 2 && lDot - lAt >= 3 && email.length() - lDot >= 3;
+    }
+}
+-------------------------------------------------------------------------------------------------------
      */
 
     public static boolean validateEmailAddress(String email){
@@ -128,6 +171,12 @@ public class Project08 {
         return str.substring(0, str.indexOf("@")).length() >= 2 &&
                 str.substring(str.indexOf("@")+1, str.indexOf(".")).length() >= 2 &&
                 str.substring(str.lastIndexOf(".")+1).length() >= 2;
+    }
+
+    // One more way
+    public static boolean validateEmailAddresss(String email) {
+        // PATTERN FORMAT: <2+chars>@<2+chars>.<2+chars>
+        return email.matches("([a-zA-z]{2,})@([a-zA-z]{2,}).([a-zA-z]{2,})");
     }
 
 

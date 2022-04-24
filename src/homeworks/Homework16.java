@@ -82,7 +82,27 @@ public class Homework16 {
     TASK 6
     Write a method removeExtraSpaces() that takes a String as an argument,
     and returns a String with removed extra spaces
+
+    SALIH's REcap
+            //first way
+        String[] sArr = s.trim().split(" "); // [I, , ,am, , , , , , learning, , , , ,  Java]
+        StringBuilder sentence = new StringBuilder();
+        for (String el : sArr) {
+            if (!el.isEmpty()) sentence.append(el).append(" ");
+        }
+        return sentence.substring(0, sentence.length()-1);
+
+            //second way
+    //String str = “I   am      learning     Java      ”;
+    StringBuilder sentence = new StringBuilder(); // I am
+        for (int i = 0; i < s.length(); i++) {
+        if (Character.isLetter(s.charAt(i))) sentence.append(s.charAt(i));
+        else if (s.charAt(i) == ' ' && sentence.charAt(sentence.length() - 1) != ' ') sentence.append(" ");
+    }
+        return sentence.toString();
+}
      */
+
     public static String removeExtraSpaces(String str) {
         str = str.trim();
         String result = "";
@@ -97,8 +117,24 @@ public class Homework16 {
     TASK 7
     Write a method add() that takes 2 int[] arrays as arguments and
     returns a new array with sum of given arrays elements.
-     */
-   /* public static int[] add(int[] arr1, int[] arr2){
+    --------------------------------------------------------------------------------
+    */
+    //SALIH's Recap
+       public static int[] addd(int[] n1, int[] n2){
+
+//        n1[0] += n2[0];
+//        n1[1] += n2[1];
+//        n1[2] += n2[2];
+        for (int i = 0; i < Math.min(n1.length, n2.length); i++) {
+            if (n1.length > n2.length) n1[i] += n2[i];
+            else n2[i] += n1[i];
+        }
+
+        return n1.length > n2.length ? n1: n2;
+    }
+   // ----------------------------------------------------------------------------------
+
+     public static int[] add(int[] arr1, int[] arr2){
         int[] nums = new int[Math.max(arr1.length, arr2.length)];
 
         for (int i = 0; i < nums.length; i++) {
@@ -111,45 +147,54 @@ public class Homework16 {
         }
         return nums;
     }
-    */
-    public static int[] add(int[] arr1, int[] arr2) {
-        if (arr1.length >= arr2.length) {
-            int[] sum = new int[arr1.length];
 
-            for (int i = 0; i < sum.length; i++) {
-                if (i < arr2.length)
-                    sum[i] = arr1[i] + arr2[i];
-                else sum[i] = arr1[i];
-            }
-            return sum;
-        } else {
-            int[] sum = new int[arr2.length];
-            for (int i = 0; i < sum.length; i++) {
-                if (i < arr1.length)
-                    sum[i] = arr1[i] + arr2[i];
-                else sum[i] = arr2[i];
-            }
-            return sum;
+
+        /*
+        Write a method findClosestTo10() that takes an int[] array as an argument,
+        and returns the closest element to 10 from given array
+        Test data 1:
+        int[] numbers = {10, -13, 5, 70, 15, 57};
+        {-13, 5, 10, 15, 57, 70}
+         */
+    //SALIH's REcap
+        public static int findClosestToo10(int[] arr){
+            int closest = Integer.MAX_VALUE;
+            Arrays.sort(arr);
+            for (int i = 0; i < arr.length; i++)
+                if (arr[i] != 10 && Math.abs(10 - arr[i]) < Math.abs(10 - closest)) // 5 <
+                    closest = arr[i];
+            return closest;
         }
-    }
-/*
-Write a method findClosestTo10() that takes an int[] array as an argument,
-and returns the closest element to 10 from given array
-Test data 1:
-int[] numbers = {10, -13, 5, 70, 15, 57};
- */
-public static int findClosestTo10(int[] numbers) {  // Akin's solution
-    Arrays.sort(numbers);
-    int leftClosest = Integer.MIN_VALUE;
-    int rightClosest = Integer.MAX_VALUE;
 
-    for(int number : numbers){
-        if(number < 10 && number > leftClosest) leftClosest = number;
-        else if(number > 10 && number < rightClosest) rightClosest = number;
+        public static int findClosestTo10(int[] numbers) {  // Akin's solution
+            Arrays.sort(numbers);
+            int leftClosest = Integer.MIN_VALUE;
+            int rightClosest = Integer.MAX_VALUE;
+
+            for(int number : numbers){
+                if(number < 10 && number > leftClosest) leftClosest = number;
+                else if(number > 10 && number < rightClosest) rightClosest = number;
+            }
+            if(10 - leftClosest <= rightClosest - 10) return leftClosest;
+            return rightClosest;
+        }
+
+    public static int countLetters(String str){
+        int count = 0;
+        for(char c : str.toCharArray()){
+            if(Character.isLetter(c)) count++;
+        }
+        return count;
     }
-    if(10 - leftClosest <= rightClosest - 10) return leftClosest;
-    return rightClosest;
-}
+
+    public static int count(String str){
+            int count = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if(Character.isLetter(str.charAt(i))) count++;
+        } return count;
+    }
+
+
 
 
 
@@ -187,6 +232,7 @@ public static int findClosestTo10(int[] numbers) {  // Akin's solution
         System.out.println(duplicate);
         System.out.println(removeDuplicateElements(duplicate));
 
+        System.out.println("-----------REMOVE EXTRA SPACES--------------");
         String str5 = "    I   am      learning     Java      ";
         System.out.println(removeExtraSpaces(str5));
 
@@ -196,6 +242,18 @@ public static int findClosestTo10(int[] numbers) {  // Akin's solution
         int[] arr3 = {6, 8, 3, 0, 0, 7, 5, 10, 34};
         int[] arr4 = {10, 3, 6, 3, 2};
         System.out.println(Arrays.toString(add(arr3, arr4)));
+        int[] numbers = new int[10];
+        numbers[0] = 100;
+        numbers[1] = -34200;
+        numbers[2] = 3040;
+        numbers[3] = 400433;
+        numbers[4] = 500;
+        numbers[5] = -100;
+        numbers[6] = -200;
+        numbers[7] = 532;
+        numbers[8] = 6584;
+        numbers[9] = -945;
+        System.out.println(findClosestTo10(numbers));
 
 
 
