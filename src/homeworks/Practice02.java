@@ -158,7 +158,8 @@ public class Practice02 {
         String str4 = "Selenium is the most common UI automation tool.   ";
         System.out.println(countWords(str4));
 
-
+     
+        
 
 
 
@@ -210,6 +211,9 @@ public class Practice02 {
                 newOne += str.charAt(i);
         } return newOne;
     }
+
+
+    
 
 
 }

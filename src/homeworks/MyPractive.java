@@ -1,9 +1,35 @@
 package homeworks;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class MyPractive {
+
+
+    public static int countPrimeNumbers(int[] numbers){
+        int count = 0;
+        for (int number : numbers) {
+            if(number == 2 || number == 3) count++;
+            else if (number > 3){
+                boolean prime = true;
+                for (int i = 2; i <= number / 2; i++) {
+                    if (number % i == 0) {
+                        prime = false;
+                        break;
+                    }
+                }
+                if (prime) count++;
+            }
+        }
+        return count;
+    }
+
+
+
+
     public static void main(String[] args) {
+        int[] nums = {-3, 5, 4, 0, 11};
+        System.out.println(countPrimeNumbers(nums));
 
         System.out.println("Exercise 1");
         // DO WHILE
@@ -70,6 +96,8 @@ public class MyPractive {
             }
             System.out.println(isPrime);
         }
+
+
 
         System.out.println("Exersice 3");
         /*

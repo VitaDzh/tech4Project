@@ -194,12 +194,44 @@ public class Homework16 {
         } return count;
     }
 
+    public static String noDigits(String str) {
+        String noDig = "";
+        for (int i = 0; i < str.length(); i++) {
+            if (!Character.isDigit(str.charAt(i))) noDig += str.charAt(i);
+        }
+        return noDig;
+    }
+
+        public static String noCons(String str){
+            return str.replaceAll("[a-zA-Z&&[^AEIOUaeiou]]", "");
+        }
+
+    public static String noConsonants(String str){
+        return str.replaceAll("[^aeiouAEIOU\\d\\W_]", "");
+    }
+
+    public static String[] removeDuplic(String[] str){
+            ArrayList<String> uniques = new ArrayList<>();
+        for (String s : str) {
+            if(!uniques.contains(s)) uniques.add(s);
+        } return (uniques.toArray(new String[0]));
+    }
+
+
+
+
+
 
 
 
 
 
     public static void main(String[] args) {
+
+        String[] strDig = {"aaa", "aa", "bbb", "bb", "b", "a"};
+        System.out.println(Arrays.toString(removeDuplic(strDig)));
+
+
         String str = "Selenium is the most common UI automation tool.   ";
         System.out.println(countWords(str));
         String str1 = "QA stands for Quality Assurance";
