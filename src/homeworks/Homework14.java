@@ -236,8 +236,22 @@ public class Homework14 {
             }
             System.out.print(" ");
         }
+        System.out.println();
 
-
+        System.out.println("-----------Here it is--------");
+        System.out.println(reverseEachWord(string));
 
     }
+
+    public static String reverseEachWord(String str){
+        StringBuilder result = new StringBuilder();
+        for(String word : str.split(" ")){
+            for (int i = word.length() - 1; i >= 0; i--) {
+                result.append(word.charAt(i));
+            }
+            result.append(" ");
+        }
+        return result.toString().trim();
+    }
+
 }
