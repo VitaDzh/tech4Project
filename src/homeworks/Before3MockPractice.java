@@ -2,6 +2,7 @@ package homeworks;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.TreeSet;
 
 public class Before3MockPractice {
@@ -31,14 +32,6 @@ public class Before3MockPractice {
         return uniques.toArray(new String[0]);
     }
 
-  
-
-    public static int countPrime(int[] arr){
-        int countPrime = 0;
-        for(int number : arr){
-            if(number > 1 && number % 2 != 0 || number == 2) countPrime++;
-        }return countPrime;
-    }
 
     public static int countPrimeNumbers(int[] numbers){
         int count = 0;
@@ -58,14 +51,55 @@ public class Before3MockPractice {
         return count;
     }
 
-    public static int countPrimeNumberss(int[] numbers){
+
+
+
+    public static int countPrimee(int[] arr){
         int count = 0;
-        for (int number : numbers) {
-            if(number == 2 || number == 3) count++;
-            else if (number > 3 && number % 2 != 0) count++;
+        for (int a : arr) {
+            if (a < 2) {
+                continue;
+            }
+        else if(a == 2 || a == 3) count++;
+            else{
+                boolean isPrime = true;
+                for (int i = 2; i <= a/2; i++) {
+                    if(a % i == 0){
+                        isPrime = false;
+                        break;
+                    }
+                }
+      if(isPrime) count++;
+            }
         }
         return count;
     }
+
+    public static void isPrime(int num){
+        int count = 0;
+            for (int i = 1; i <= num; i++) {
+                if(num % i == 0) count++;
+        }
+        if(count == 2) System.out.println("Prime"); // since Prime is a num dividable by itself and 1 only
+        else System.out.println("Not Prime");
+    }
+
+    public static int countPrimeee(int[] arr){
+        int countPrime = 0;
+        for (int a : arr) {
+           int  countInside = 0;
+            for (int i = 1; i <= a; i++) {
+                if (a % i == 0 && a != 1) {
+                    countInside++;
+                }
+            }
+            if(countInside == 2) countPrime++;
+        }
+        return countPrime;
+    }
+
+
+
 
     public static void reverseEachWord(String str){
         String[] arr = str.split(" ");
@@ -77,23 +111,14 @@ public class Before3MockPractice {
         }
     }
 
-    public static int factorial(int number){
-        if(number == 0 || number == 1) return 1;
-        else {
-            int temp = number;
-            for (int i = 2; i < temp; i++) {
-                number *= i;
-            }
-        }
-        return number;
-    }
-
     public static int secondMaxValue(int[] numbers){
         TreeSet<Integer> uniques = new TreeSet<>();
         for(int number : numbers) uniques.add(number);
 
         return new ArrayList<>(uniques).get(uniques.size()-2);
     }
+
+
 
     ///////////////////////////
 
@@ -117,19 +142,102 @@ public class Before3MockPractice {
         }
     }
 
+
+    public static int[] factorial(int[] numbers){
+        for (int i = 0; i < numbers.length; i++) {
+            if(numbers[i] == 0 || numbers[i] == 1) numbers[i] = 1;
+            else{
+                int number =  numbers[i];
+                for (int j = 2; j < number; j++) {
+                    numbers[i] *= j;
+                }
+            }
+        }
+        return numbers;
+    }
+
+    public static int[] factor(int[] arr){
+        for (int i = 0; i < arr.length; i++) {
+            int f = 1;
+            for (int j = arr[i]; j >= 2; j--) {
+                f*=j;
+            }
+            arr[i] = f;
+        }
+        return arr;
+    }
+
+
+
+    public static int factorial(int number){
+        int temp = 1;
+        if(number == 0 || number == 1) return 1;
+        else {
+            for (int i = 2; i <= number; i++) {
+                temp *= i;
+            }
+        }
+        return temp;
+    }
+
+
+
+
+    public static int[] removeDuplicateNumbers(int[] numbers){
+        HashSet<Integer> uniques = new HashSet<>();
+        for(int i : numbers) uniques.add(i);
+
+        int[] arr = new int[uniques.size()];
+
+        int index = 0;
+        for(int i : uniques) arr[index++] = i;
+
+        return arr;
+    }
+
+
+    public static boolean isAnagram(String str1, String str2){
+        char[] c1 = str1.toCharArray();
+        char[] c2 = str2.toCharArray();
+
+        Arrays.sort(c1);
+        Arrays.sort(c2);
+
+        return Arrays.equals(c1, c2);
+    }
+
+    public static int returnSum(String str){
+        int sum = 0;
+        for (int i = 0; i < str.length(); i++) {
+                  if(Character.isDigit(str.charAt(i))) sum += Integer.parseInt(String.valueOf(str.charAt(i)));
+        }
+        return sum;
+    }
+
+
+
+
+
     public static void main(String[] args) {
+        String sum = "1 1 2 2 3 3 ";
+        System.out.println("sum is " + returnSum(sum));
         System.out.println(secondMaxValue(new int[]{-5, 4, 1, 10, 2})); // 4
         int[] intArr = {-5, 4, 1, 10, 2};
+        System.out.println("Facto" + Arrays.toString(factorial(new int[]{0, 5, 4, 1, 3, 2}))); // [1, 120, 24, 1, 6, 2]
+        System.out.println("Facto Alona's" + Arrays.toString(factor(new int[]{0, 5, 4, 1, 3, 2}))); // [1, 120, 24, 1, 6, 2]
+        System.out.println("Factorial int " + factorial(4)); // [1, 120, 24, 1, 6, 2]
+
+        System.out.println(countPrimeNumbers(intArr));
         findSecondGreatestAndSmallest(intArr);
 
         System.out.println(factorial(5));
         int[] arr3 = {2, 3, 5, 7, 4, 3, 2, 11, 6, 8, 10};
-        System.out.println(countPrime(arr3));
-        System.out.println(countPrimeNumbers(arr3));
-        System.out.println(countPrimeNumberss(arr3));
+        System.out.println("Prime before " +countPrimeNumbers(arr3));
+        System.out.println("Prime mine " + countPrimee(arr3));
+        System.out.println("Prime mine " + countPrimeee(arr3));
 
 
-        String[] strDig = {"aaa", "aa", "bbb", "bb", "b", "a"};
+        String[] strDig = {"aaa", "a", "aa", "aaa", "aa", "bbb", "bb", "a", "b", "b", "a"};
         System.out.println(Arrays.toString(removeDuplic(strDig)));
 
 
