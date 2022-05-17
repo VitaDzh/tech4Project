@@ -98,6 +98,8 @@ public class Homework18 {
     }
 
 
+
+
     /*
     -Create a method called no3or5()
     -This method will take an int array argument and it will return a new array with some elements replaced as below
