@@ -20,6 +20,18 @@ public class Homework19 {
         return noDig;
     }
 
+    public static String noDigit1(String str) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+            if (!Character.isDigit(c)) {
+                sb.append(c);
+            }
+        }
+        return sb.toString().trim();
+    }
+
+
     /* TASK 2
     -Create a method called noVowel()
     -This method will take one String argument and it will return a new
@@ -151,12 +163,14 @@ public class Homework19 {
         System.out.println("does not haveUpper2 -->> " + hasUpperCase2("lakdh"));
         System.out.println("hasUpper3 -->> " + hasUpperCase3("jhdgffjGTgadlf"));
         System.out.println("does not haveUpper3 -->> " + hasUpperCase3("lakdh"));
+        System.out.println(Arrays.toString(no13(new int[]{13, 2, 3})));
 
         int[] arr = {13, 0, 13, 5, 7};
         System.out.println("no13 -->>" + Arrays.toString(no13(arr)));
         System.out.println("factorial -->>" + Arrays.toString(arrFactorial(arr)));
         System.out.println("categorizeCharacters -->> " + Arrays.toString(categorizeCharacters("abc123$#%")));
         System.out.println("categorizeCharacters2 -->> " + Arrays.toString(categorizeCharacters("12ab$%3c%")));
+
 
 
 
