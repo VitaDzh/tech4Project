@@ -135,9 +135,9 @@ public class Homework20 {
      */
     public static ArrayList<String> removeAndReturnCommons(ArrayList<String> arr1, ArrayList<String> arr2 ){
         ArrayList<String> commonWords = new ArrayList<>();
-        for (int i = 0; i < arr1.size(); i++) {
-            for (int j = 0; j < arr2.size(); j++) {
-                if (arr1.get(i).equals(arr2.get(j)) && !commonWords.contains(arr2.get(j))) commonWords.add(arr2.get(j));
+        for (String value : arr1) {
+            for (String s : arr2) {
+                if (value.equals(s) && !commonWords.contains(s)) commonWords.add(s);
             }
         }
         return commonWords;
@@ -153,12 +153,8 @@ public class Homework20 {
 
     public static ArrayList<String> noXInVariables2(ArrayList<String> arrayList) {
         for (int i = 0; i < arrayList.size(); i++) {
-            if (arrayList.get(i).length() == 1) {
-                arrayList.removeIf(element -> element.equalsIgnoreCase("x"));
-            }
-            else if(arrayList.get(i).length() > 1){
-                String replaced = arrayList.get(i).replaceAll("[xX]", "");
-                arrayList.set(i, replaced);
+                if(arrayList.get(i).toLowerCase().contains("x")){
+                    arrayList.set(i, arrayList.get(i).replaceAll("[xX]", ""));
                 }
             }
         arrayList.removeIf(String::isEmpty);
