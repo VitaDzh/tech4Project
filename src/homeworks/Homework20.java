@@ -49,6 +49,10 @@ public class Homework20 {
             }
         return squared;
     }
+    /*
+    //            numsSquare[i] = new int[]{nums[i], nums[i] * nums[i]};
+
+     */
 
 
     /*Task 4
@@ -76,19 +80,21 @@ public class Homework20 {
  If there is no two words return “There is not enough words!”.
     NOTE: After you reverse, only first letter must be uppercase and the rest will be lowercase!
      */
-    public static String reverseSentence(String str) {
-        StringBuilder result = new StringBuilder();
-        if (str.length() > 1) {
-            for (String word : str.split(" ")) {
-                for (int i = word.length() - 1; i >= 0; i--) {
-                    result.append(word.charAt(i));
-                }
-                result.append(" ");
-            }
-            return result.toString().trim();
+    public static String reverseSentence(String sentence) {
+        // sentence -> "This is a sentence"
+        if (!sentence.trim().contains(" ")) return "There is not enough words!";
+
+        StringBuilder sb = new StringBuilder();
+        // sentence.trim().split("\\s+") --> ["This", "is", "a", "sentence"] --> "Sentence a is this"
+        String[] sentenceArr = sentence.trim().split("\\s+");
+        for (int i = sentenceArr.length - 1; i >= 0; i--) {
+            sb.append(sentenceArr[i].toLowerCase() + " ");
         }
-        return "There is not enough words!";
+
+        return sb.substring(0, 1).toUpperCase() + sb.substring(1).trim();
     }
+
+
 
     /*Task 6
     -Create a method called removeStringSpecialsDigits()
@@ -119,14 +125,28 @@ public class Homework20 {
      */
 
     public static String[] removeArraySpecialsDigits(String[] arr) {
-        String[] clearedd = new String[arr.length];
         for (int i = 0; i < arr.length; i++) {
-             String word = arr[i].replaceAll("[^sa-zA-Z]", "");
-             clearedd[i] = word;
+            arr[i] = arr[i].replaceAll("[^sa-zA-Z]", "");
         }
-        return clearedd;
+        return arr;
     }
+    /*
 
+    public static String[] removeArraySpecialsDigits(String[] arrs) {
+        // arrs -> ["123Java", "#$%is", "fun"]
+        // arrs -> ["Java", "is", "fun"]
+
+        // String pool --> "123Java", "#$%is", "fun", "Java"
+
+        for (int i = 0; i < arrs.length; i++) {
+//            StringBuilder sb = new StringBuilder();
+//            for (char character : arrs[i].toCharArray()) if (Character.isLetter(character)) sb.append(character);
+//            arrs[i] = sb.toString();
+            arrs[i] = arrs[i].replaceAll("[^a-zA-Z]", "");
+        }
+        return arrs;
+    }
+     */
 
     /*Task 8
     -Create a method called removeAndReturnCommons()
@@ -142,6 +162,19 @@ public class Homework20 {
         }
         return commonWords;
     }
+    /*
+        public static ArrayList<String> removeAndReturnCommons(ArrayList<String> l1, ArrayList<String> l2){
+        ArrayList<String> duplicates = new ArrayList<>();
+
+        for (String s1 : l1) {
+            for (String s2 : l2) {
+                if (s1.equals(s2) && !duplicates.contains(s1)) duplicates.add(s1);
+            }
+        }
+
+        return duplicates;
+    }
+     */
 
     /*Task 9
     -Create a method called noXInVariables()
@@ -157,9 +190,31 @@ public class Homework20 {
                     arrayList.set(i, arrayList.get(i).replaceAll("[xX]", ""));
                 }
             }
-        arrayList.removeIf(String::isEmpty);
+        arrayList.removeIf(String::isEmpty); //arrayList.removeIf(element -> element.toLowerCase().isEmpty());
+
         return arrayList;
     }
+
+    /*
+       ArrayList<String> str = new ArrayList<>();
+            str.add("JavaXx");
+            str.add("Cxxx#xxxx");
+            str.add("xx");
+            str.add("X");
+     */
+    public static ArrayList<String> noXInVariables(ArrayList<String> str) {
+        for (int i = 0; i < str.size(); i++) {
+            if (str.get(i).replaceAll("[xX]", "").length() == 0) str.remove(i--);// post decrement , that's why removes after we call it again
+            else str.set(i, str.get(i).replaceAll("[xX]", ""));
+        }
+        return str;
+    }
+
+
+
+
+
+
 
      
 
@@ -208,6 +263,7 @@ public class Homework20 {
             str.add("X");
             System.out.println("Task 8 " + removeAndReturnCommons(strArr, str));
             System.out.println("Task 9 " + noXInVariables2(str));
+            System.out.println("Task 9 Daria's " + noXInVariables(str));
     }
 
 
