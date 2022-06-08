@@ -1,4 +1,4 @@
-package myHomePractice;
+package myJavaPractice;
 
 
 import java.awt.*;

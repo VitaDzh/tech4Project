@@ -1,4 +1,4 @@
-package homeworks;
+package myJavaPractice;
 
 import java.util.ArrayList;
 import java.util.Arrays;

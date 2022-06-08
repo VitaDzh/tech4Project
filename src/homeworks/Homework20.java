@@ -73,6 +73,12 @@ public class Homework20 {
         return exist;
     }
 
+    //Naim's
+    public static boolean containsValue2(String[] arr, String str){
+        Arrays.sort(arr);
+        return Arrays.binarySearch(arr, str) >= 0;
+    }
+
     /*Task 5
     -Create a method called reverseSentence()
     -This method will take a String argument and it will return a String with changing the place of every word.
@@ -193,6 +199,16 @@ public class Homework20 {
         arrayList.removeIf(String::isEmpty); //arrayList.removeIf(element -> element.toLowerCase().isEmpty());
 
         return arrayList;
+    }
+
+    //Naim's solution
+    public static ArrayList<String> noXInVariabless(ArrayList<String> arr){
+        ArrayList<String> newArr = new ArrayList<>();
+        for (String element : arr) {
+            newArr.add(element.replaceAll("[xX]", ""));
+        }
+        newArr.removeIf(String::isEmpty);
+        return newArr;
     }
 
     /*

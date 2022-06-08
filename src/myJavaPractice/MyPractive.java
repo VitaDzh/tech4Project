@@ -1,4 +1,4 @@
-package homeworks;
+package myJavaPractice;
 
 import java.util.Arrays;
 import java.util.Scanner;

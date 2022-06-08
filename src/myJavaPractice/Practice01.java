@@ -1,5 +1,6 @@
-package homeworks;
+package myJavaPractice;
 
+import homeworks.ExtraPractice;
 import utilities.ScannerHelper;
 
 public class Practice01 {
