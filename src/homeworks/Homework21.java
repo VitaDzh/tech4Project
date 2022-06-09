@@ -41,7 +41,7 @@ public class Homework21 {
     -This method will take a String argument and it will return an int which is the sum
     of all numbers presented in the String.
     NOTE: If there are no numbers represented in the String, return 0.
-    */
+
 
     public static int findSumNumbers(String str) { // ab110c50d5
         String str2 = ""; int sum = 0;
@@ -57,6 +57,20 @@ public class Homework21 {
             sum += Integer.parseInt(s);
         }
         return sum;
+    }
+
+     */
+
+    public static int findSumNumberss(String s){ // Kaly's
+        int sum = 0; // container to hold sum of numbers
+        String temp = "0"; // container to hold String format of the numbers
+        for (int i = 0; i < s.length(); i++){
+            if (Character.isDigit(s.charAt(i))) temp += s.charAt(i); // checking if the current char is digit
+            else { // else if current char is letter ...
+                sum += Integer.parseInt(temp); // ... then add to the sum of the digits found prior to letter
+                temp = "0"; // reset the String container back to empty
+            }
+        }return sum + Integer.parseInt(temp);
     }
 
 
@@ -113,7 +127,8 @@ public class Homework21 {
         System.out.println("TASK 1");
         fizzBuzz1(number);
         System.out.println("TASK 2--> " + fizzBuzz2(number));
-        System.out.println("TASK 3--> " + findSumNumbers(str)); // does not work if the last char is a number
+       // System.out.println("TASK 3--> " + findSumNumbers(str));
+        System.out.println("TASK 3 KAly;s--> " + findSumNumberss(str));
         System.out.println("TASK 4--> " + findBiggestNumber(str));
         System.out.println("TASK 5--> " + countSequenceOfCharacters(str));
 
