@@ -43,14 +43,15 @@ public class Homework21 {
     NOTE: If there are no numbers represented in the String, return 0.
     */
 
-    public static int findSumNumbers(String str) { // ab34ca5cBd
+    public static int findSumNumbers(String str) { // ab110c50d5
         String str2 = ""; int sum = 0;
-        for (int i = 0; i < str.length(); i++) {
+        for (int i = 0; i < str.length()-1; i++) {
             if (Character.isDigit(str.charAt(i))){
                 if (Character.isDigit(str.charAt(i+1))) str2 += str.charAt(i)+"";
                 else if(!Character.isDigit(str.charAt(i+1))) str2 += str.charAt(i)+" ";
             }
         }
+        if(Character.isDigit(str.charAt(str.length()-1))) str2 += str.charAt(str.length()-1) +" ";
         String[] arr = str2.split(" ");
         for (String s : arr) {
             sum += Integer.parseInt(s);
@@ -84,7 +85,6 @@ public class Homework21 {
     NOTE: It is case sensitive!!!
     Test Data 3: “abbcca”
     Expected Result 3: “1a2b2ca”
-
      */
     public static String countSequenceOfCharacters(String str) {
         String str2 = ""; // abcacB
@@ -108,12 +108,12 @@ public class Homework21 {
 
 
     public static void main(String[] args) {
-        String str = "ab110c045d";
+        String str = "ab110c50d5";
         int number = 20;
         System.out.println("TASK 1");
         fizzBuzz1(number);
         System.out.println("TASK 2--> " + fizzBuzz2(number));
-        System.out.println("TASK 3--> " + findSumNumbers(str));
+        System.out.println("TASK 3--> " + findSumNumbers(str)); // does not work if the last char is a number
         System.out.println("TASK 4--> " + findBiggestNumber(str));
         System.out.println("TASK 5--> " + countSequenceOfCharacters(str));
 
