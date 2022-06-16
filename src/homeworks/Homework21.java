@@ -62,15 +62,23 @@ public class Homework21 {
      */
 
     public static int findSumNumberss(String s){ // Kaly's
-        int sum = 0; // container to hold sum of numbers
-        String temp = "0"; // container to hold String format of the numbers
+        int sum = 0; 
+        String temp = "0";
         for (int i = 0; i < s.length(); i++){
-            if (Character.isDigit(s.charAt(i))) temp += s.charAt(i); // checking if the current char is digit
-            else { // else if current char is letter ...
-                sum += Integer.parseInt(temp); // ... then add to the sum of the digits found prior to letter
-                temp = "0"; // reset the String container back to empty
+            if (Character.isDigit(s.charAt(i))) temp += s.charAt(i);
+            else {
+                sum += Integer.parseInt(temp);
+                temp = "0";
             }
         }return sum + Integer.parseInt(temp);
+    }
+
+    public static int findSumOfNumbers(String str){ //Melda's
+        int sum = 0;
+        for (String string : str.replaceAll("[^0-9]", " ").split(" ")) {
+            if(!string.isEmpty()) sum += Integer.parseInt(string);
+        }
+        return sum;
     }
 
 
@@ -127,7 +135,7 @@ public class Homework21 {
         System.out.println("TASK 1");
         fizzBuzz1(number);
         System.out.println("TASK 2--> " + fizzBuzz2(number));
-       // System.out.println("TASK 3--> " + findSumNumbers(str));
+        System.out.println("TASK 3--> " + findSumOfNumbers(str));
         System.out.println("TASK 3 KAly;s--> " + findSumNumberss(str));
         System.out.println("TASK 4--> " + findBiggestNumber(str));
         System.out.println("TASK 5--> " + countSequenceOfCharacters(str));
