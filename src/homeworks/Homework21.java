@@ -99,6 +99,13 @@ public class Homework21 {
         return arrayList.get(arrayList.size()-1);
     }
 
+    public static int findBiggestNumberSalih(String s) {
+        int max = Integer.MIN_VALUE;
+        s = "0" + s;
+        for (String num : s.trim().split("[^0-9]+")) if (Integer.parseInt(num) > max) max = Integer.parseInt(num);
+        return max;
+    }
+
     /*
     -Create a method called countSequenceOfCharacters()
     -This method will take a String argument and it will return a String which is the count of repeated
@@ -123,6 +130,19 @@ public class Homework21 {
             }
         }
         return str2;
+    }
+
+    public static String countSequenceOfCharactersSalih(String s) {
+        StringBuilder count = new StringBuilder(" ");
+
+        //“abbcca”
+        // " 1a2b"
+        for (char c : s.toCharArray()) {
+            if (count.charAt(count.length() - 1) != c) count.append("1" + c);
+            else count.replace(count.length() - 2, count.length() - 1,
+                    (Integer.parseInt(count.charAt(count.length() - 2) + "") + 1) + "");
+        }
+        return count.toString().trim();
     }
 
 
