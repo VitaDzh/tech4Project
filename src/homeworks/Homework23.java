@@ -119,6 +119,7 @@ public class Homework23 {
         double[] prices = {2.0, 4.99};
         //System.out.println(calculateTotalPrice1(items, prices));
         System.out.println(calculateTotalPrice2(items));
+
     }
 
 }
