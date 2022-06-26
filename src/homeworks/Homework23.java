@@ -115,6 +115,7 @@ public class Homework23 {
         items.put("Orange", 3);
         items.put("Mango", 8);
        // items.put("Pineapple", 5.25);
+
         double[] prices = {2.0, 4.99};
         //System.out.println(calculateTotalPrice1(items, prices));
         System.out.println(calculateTotalPrice2(items));
