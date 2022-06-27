@@ -120,6 +120,7 @@ public class Homework23 {
         //System.out.println(calculateTotalPrice1(items, prices));
         System.out.println(calculateTotalPrice2(items));
 
+// shhh
     }
 
 }
